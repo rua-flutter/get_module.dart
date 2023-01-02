@@ -7,7 +7,7 @@ import 'module/test_module.dart';
 void main() {
   group('Get Module', () {
     test('runs without exception', () {
-      GetModular([
+      GetModuleLoader([
         TestModule(),
       ]);
     });
@@ -15,14 +15,14 @@ void main() {
     test('auto run and run only once', () {
       var module = TestModule();
 
-      GetModular([
+      GetModuleLoader([
         module,
       ], autoStart: false);
 
       expect(module.installed, false);
       expect(module.installedCount, 0);
 
-      GetModular([
+      GetModuleLoader([
         module,
       ]);
 

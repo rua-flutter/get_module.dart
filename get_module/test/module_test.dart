@@ -16,7 +16,7 @@ void main() {
       // given
       var module = TestModule();
 
-      GetModular([
+      GetModuleLoader([
         module,
       ]);
 
@@ -30,7 +30,7 @@ void main() {
       var module = TestModule();
 
       // when
-      GetModular([
+      GetModuleLoader([
         module.debugOnly,
       ]);
 
@@ -44,7 +44,7 @@ void main() {
       var module = TestModule();
 
       // when
-      GetModular([
+      GetModuleLoader([
         module.productionOnly,
       ]);
 
@@ -58,7 +58,7 @@ void main() {
       var module = TestModule()..testingProductionMode = true;
 
       // when
-      GetModular([
+      GetModuleLoader([
         module.debugOnly,
       ]);
 
@@ -72,7 +72,7 @@ void main() {
       var module = TestModule()..testingProductionMode = true;
 
       // when
-      GetModular([
+      GetModuleLoader([
         module.productionOnly,
       ]);
 
@@ -88,7 +88,7 @@ void main() {
       });
 
       // when
-      GetModular([
+      GetModuleLoader([
         module.silenceOnError,
       ]);
 
@@ -104,7 +104,7 @@ void main() {
 
       // when
       try {
-        await GetModular(
+        await GetModuleLoader(
           [
             module,
           ],
@@ -126,7 +126,7 @@ void main() {
 
       // when
       try {
-        await GetModular(
+        await GetModuleLoader(
           [
             module,
           ],
@@ -146,7 +146,7 @@ void main() {
 
       // when
       try {
-        await GetModular(
+        await GetModuleLoader(
           [
             module.retryOnError,
           ],
@@ -171,7 +171,7 @@ void main() {
       });
 
       // when
-      await GetModular(
+      await GetModuleLoader(
         [
           RunAppModule(const FittedBox()),
         ],

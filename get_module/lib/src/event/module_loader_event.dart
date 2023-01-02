@@ -1,10 +1,10 @@
 import 'package:get_module/src/module_loader.dart';
 
-/// ModularEvent
+/// ModuleEvent
 ///
 /// parent event class
 class ModuleLoaderEvent {
-  final Modular module;
+  final ModuleLoader module;
 
   ModuleLoaderEvent(this.module);
 }

@@ -18,7 +18,7 @@ enum Scope {
 enum ErrorHandle {
   // ignore error and log on console in debug mode.
   silence,
-  // terminate module installation, and hand it over to GetModular.
+  // terminate module installation, and hand it over to GetModule
   throws,
   // retry until success
   retry,
@@ -26,7 +26,7 @@ enum ErrorHandle {
 
 /// Module
 abstract class Module {
-  late Modular modular;
+  late ModuleLoader moduleLoader;
 
   @protected
   @visibleForTesting
@@ -54,7 +54,7 @@ abstract class Module {
 
   Future<void> run() async {
     if (isDebug && scope == Scope.production) {
-      log('$runtimeType module is production only, so ignored', name: 'Get Modular');
+      log('$runtimeType module is production only, so ignored', name: 'Get Module');
       return;
     }
 

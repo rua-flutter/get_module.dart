@@ -14,6 +14,6 @@ class RunAppModule extends Module {
   @override
   Future<void> install() async {
     runApp(app);
-    Get.bus.fire(AppStartedEvent(modular));
+    Get.bus.fire(AppStartedEvent(moduleLoader));
   }
 }

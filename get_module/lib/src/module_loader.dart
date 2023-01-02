@@ -5,7 +5,7 @@ import 'package:get_module/src/event/after_start_module_loader_event.dart';
 import 'package:get_module/src/event/before_start_module_loader_event.dart';
 import 'package:get_module/src/module/module.dart';
 
-abstract class Modular {
+abstract class ModuleLoader {
   final List<Module> modules;
 
   @protected
@@ -24,7 +24,7 @@ abstract class Modular {
   @visibleForTesting
   bool running = false;
 
-  Modular(
+  ModuleLoader(
     this.modules, {
     bool autoStart = true,
   }) {
@@ -34,7 +34,7 @@ abstract class Modular {
   }
 
   Future<void> run() async {
-    Get.bus.fire(BeforeStartModularEvent(this));
+    Get.bus.fire(BeforeStartModuleLoaderEvent(this));
     if (running) {
       return;
     }
@@ -67,7 +67,7 @@ abstract class Modular {
   }
 
   Future<void> runAsync(Module module) async {
-    module.modular = this;
+    module.moduleLoader = this;
     await module.run();
     pendingModules.remove(module);
     installedModules.add(module.runtimeType);
