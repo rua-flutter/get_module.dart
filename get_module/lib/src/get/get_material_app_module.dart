@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_module/get_module.dart';
-import 'package:get_module/src/get/page_manager.dart';
+import 'package:get_module/src/get/app_config.dart';
 
 /// GetMaterialAppModule
 ///
 /// Module for [GetMaterialApp]
 class GetMaterialAppModule extends Module {
-  final PageManager pageManager = Get.find();
+  final AppConfig appConfig = Get.find();
 
   late final Widget app;
 
@@ -19,7 +20,8 @@ class GetMaterialAppModule extends Module {
     app = GetMaterialApp(
       home: home,
       initialRoute: initialRoute,
-      getPages: pageManager.getPages(),
+      getPages: appConfig.getPages,
+      builder: appConfig.builder,
     );
   }
 
