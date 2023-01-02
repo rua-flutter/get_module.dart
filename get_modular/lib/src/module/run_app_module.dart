@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_event_bus/get_event_bus.dart';
 import 'package:get_modular/get_modular.dart';
-import 'package:get_modular/src/event/app_started_event.dart';
 
 /// RunAppModule
 ///

@@ -17,11 +17,11 @@ enum Scope {
 /// error handling method
 enum ErrorHandle {
   // ignore error and log on console in debug mode.
-  ignore,
+  silence,
   // terminate module installation, and hand it over to GetModular.
-  terminate,
+  throws,
   // retry until success
-  retryUntilSuccess,
+  retry,
 }
 
 /// Module
@@ -34,23 +34,31 @@ abstract class Module {
 
   @protected
   @visibleForTesting
-  ErrorHandle errorHandle = ErrorHandle.ignore;
+  ErrorHandle errorHandle = ErrorHandle.throws;
 
   @protected
   @visibleForTesting
   int failCount = 0;
 
+  int retries = 3;
+
   List<Type> dependencies = [];
+
+  @visibleForTesting
+  bool testingProductionMode = false;
+
+  @protected
+  bool get isDebug => !testingProductionMode && kDebugMode;
 
   FutureOr<void> install();
 
   Future<void> run() async {
-    if (kDebugMode && scope == Scope.production) {
+    if (isDebug && scope == Scope.production) {
       log('$runtimeType module is production only, so ignored', name: 'Get Modular');
       return;
     }
 
-    if (!kDebugMode && scope == Scope.debug) {
+    if (!isDebug && scope == Scope.debug) {
       return;
     }
 
@@ -59,12 +67,15 @@ abstract class Module {
     } catch (e) {
       failCount++;
       switch (errorHandle) {
-        case ErrorHandle.ignore:
+        case ErrorHandle.silence:
           break;
-        case ErrorHandle.terminate:
+        case ErrorHandle.throws:
           rethrow;
-        case ErrorHandle.retryUntilSuccess:
-          await Future.delayed(const Duration(milliseconds: 250));
+        case ErrorHandle.retry:
+          if (failCount > retries) {
+            rethrow;
+          }
+          await Future.delayed(const Duration(milliseconds: 100));
           await run();
           break;
       }
@@ -81,13 +92,13 @@ abstract class Module {
     return this;
   }
 
-  Module get terminateOnError {
-    errorHandle = ErrorHandle.terminate;
+  Module get silenceOnError {
+    errorHandle = ErrorHandle.silence;
     return this;
   }
 
-  Module get retryUntilSuccess {
-    errorHandle = ErrorHandle.retryUntilSuccess;
+  Module get retryOnError {
+    errorHandle = ErrorHandle.retry;
     return this;
   }
 }

@@ -17,6 +17,20 @@ class TestModule extends Module {
   }
 }
 
+class TestErrorModule extends Module {
+  int installedCount = 0;
+
+  @override
+  FutureOr install() {
+    installedCount++;
+    throw Exception();
+  }
+
+  bool get installed {
+    return installedCount > 0;
+  }
+}
+
 class TestUIModule extends Module with RouteConfig {
   @override
   FutureOr<void> install() {

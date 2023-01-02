@@ -33,7 +33,7 @@ abstract class Modular {
     }
   }
 
-  void run() async {
+  Future<void> run() async {
     Get.bus.fire(BeforeStartModularEvent(this));
     if (running) {
       return;
