@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:get_modular/get_modular.dart';
+import 'package:get_module/get_module.dart';
 
 /// module scope
 enum Scope {

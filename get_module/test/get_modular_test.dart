@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:get_modular/get_modular.dart';
+import 'package:get_module/get_module.dart';
 
 import 'module/test_module.dart';
 
 void main() {
-  group('Get Modular', () {
+  group('Get Module', () {
     test('runs without exception', () {
       GetModular([
         TestModule(),

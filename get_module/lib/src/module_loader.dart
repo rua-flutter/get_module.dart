@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_event_bus/get_event_bus.dart';
-import 'package:get_modular/src/event/after_start_modular_event.dart';
-import 'package:get_modular/src/event/before_start_modular_event.dart';
-import 'package:get_modular/src/module/module.dart';
+import 'package:get_module/src/event/after_start_module_loader_event.dart';
+import 'package:get_module/src/event/before_start_module_loader_event.dart';
+import 'package:get_module/src/module/module.dart';
 
 abstract class Modular {
   final List<Module> modules;
@@ -49,7 +49,7 @@ abstract class Modular {
     });
 
     pendingExecutions.clear();
-    Get.bus.fire(AfterStartModularEvent(this));
+    Get.bus.fire(AfterStartModuleLoaderEvent(this));
   }
 
   Future<void> scanSatisfied() async {

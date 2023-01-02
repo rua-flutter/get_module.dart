@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_modular/get_modular.dart';
-import 'package:get_modular/src/get/page_manager.dart';
+import 'package:get_module/get_module.dart';
+import 'package:get_module/src/get/page_manager.dart';
 
 /// GetMaterialAppModule
 ///

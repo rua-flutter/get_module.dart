@@ -1,8 +1,7 @@
 
 import 'dart:async';
 
-import 'package:get_modular/get_modular.dart';
-import 'package:get_modular/src/feature/route_config.dart';
+import 'package:get_module/get_module.dart';
 
 class TestModule extends Module {
   int installedCount = 0;
@@ -31,8 +30,8 @@ class TestErrorModule extends Module {
   }
 }
 
-class TestUIModule extends Module with RouteConfig {
-  @override
-  FutureOr<void> install() {
-  }
-}
+// class TestUIModule extends Module with RouteConfig {
+//   @override
+//   FutureOr<void> install() {
+//   }
+// }
