@@ -1,9 +1,11 @@
-import 'package:get/get.dart';
 import 'package:get_module/get_module.dart';
-import 'package:get_module/src/get/module_config.dart';
 
+/// GetModuleLoader
+///
+/// wrapper for [ModuleLoader]
 class GetModuleLoader extends ModuleLoader {
-  GetModuleLoader(super.modules, {
+  GetModuleLoader(
+    super.modules, {
     super.autoStart,
   });
 }

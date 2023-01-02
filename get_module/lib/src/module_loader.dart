@@ -5,6 +5,9 @@ import 'package:get_module/src/event/after_start_module_loader_event.dart';
 import 'package:get_module/src/event/before_start_module_loader_event.dart';
 import 'package:get_module/src/module/module.dart';
 
+/// ModuleLoader
+///
+/// loads all modules
 abstract class ModuleLoader {
   final List<Module> modules;
 

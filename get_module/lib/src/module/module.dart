@@ -54,7 +54,8 @@ abstract class Module {
 
   Future<void> run() async {
     if (isDebug && scope == Scope.production) {
-      log('$runtimeType module is production only, so ignored', name: 'Get Module');
+      log('$runtimeType module is production only, so ignored',
+          name: 'Get Module');
       return;
     }
 
