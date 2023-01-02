@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class AppConfig {
+/// ModuleConfig
+class ModuleConfig {
   List<TransitionBuilder> builders = [];
 
   TransitionBuilder? get builder {
@@ -33,4 +34,10 @@ class AppConfig {
   void addPages(Iterable<GetPage> pages) {
     routes.addAll(pages);
   }
+}
+
+extension GetModuleConfigExtension on GetInterface {
+  static final _moduleConfig = ModuleConfig();
+
+  ModuleConfig get moduleConfig => _moduleConfig;
 }
