@@ -1,12 +1,31 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:get_event_bus/get_event_bus.dart';
+import 'package:get_modular/src/event/after_start_modular_event.dart';
 import 'package:get_modular/src/event/before_start_modular_event.dart';
 import 'package:get_modular/src/module/module.dart';
-import 'package:get_event_bus/get_event_bus.dart';
 
 abstract class Modular {
   final List<Module> modules;
 
-  Modular(this.modules, {
+  @protected
+  @visibleForTesting
+  final List<Type> installedModules = [];
+
+  @protected
+  @visibleForTesting
+  final List<Module> pendingModules = [];
+
+  @protected
+  @visibleForTesting
+  final pendingExecutions = <Future>[];
+
+  @protected
+  @visibleForTesting
+  bool running = false;
+
+  Modular(
+    this.modules, {
     bool autoStart = true,
   }) {
     if (autoStart) {
@@ -14,7 +33,44 @@ abstract class Modular {
     }
   }
 
-  void run() {
+  void run() async {
     Get.bus.fire(BeforeStartModularEvent(this));
+    if (running) {
+      return;
+    }
+
+    running = true;
+
+    scanSatisfied();
+
+    await Future.doWhile(() async {
+      await Future.wait(pendingExecutions);
+      return modules.isNotEmpty || pendingModules.isNotEmpty;
+    });
+
+    pendingExecutions.clear();
+    Get.bus.fire(AfterStartModularEvent(this));
+  }
+
+  Future<void> scanSatisfied() async {
+    for (final module in [...modules]) {
+      if (module.dependencies.length < installedModules.length) {
+        continue;
+      }
+
+      if (module.dependencies.every((el) => installedModules.contains(el))) {
+        modules.remove(module);
+        pendingModules.add(module);
+        pendingExecutions.add(runAsync(module));
+      }
+    }
+  }
+
+  Future<void> runAsync(Module module) async {
+    module.modular = this;
+    await module.run();
+    pendingModules.remove(module);
+    installedModules.add(module.runtimeType);
+    scanSatisfied();
   }
 }

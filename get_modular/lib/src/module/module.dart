@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:get_modular/get_modular.dart';
 
 /// module scope
@@ -29,9 +28,19 @@ enum ErrorHandle {
 abstract class Module {
   late Modular modular;
 
+  @protected
+  @visibleForTesting
   Scope scope = Scope.all;
 
+  @protected
+  @visibleForTesting
   ErrorHandle errorHandle = ErrorHandle.ignore;
+
+  @protected
+  @visibleForTesting
+  int failCount = 0;
+
+  List<Type> dependencies = [];
 
   FutureOr<void> install();
 
@@ -45,7 +54,21 @@ abstract class Module {
       return;
     }
 
-    await install();
+    try {
+      await install();
+    } catch (e) {
+      failCount++;
+      switch (errorHandle) {
+        case ErrorHandle.ignore:
+          break;
+        case ErrorHandle.terminate:
+          rethrow;
+        case ErrorHandle.retryUntilSuccess:
+          await Future.delayed(const Duration(milliseconds: 250));
+          await run();
+          break;
+      }
+    }
   }
 
   Module get debugOnly {
