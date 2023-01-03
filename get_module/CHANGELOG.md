@@ -1,3 +1,8 @@
+## 0.3.0
+
+* Rename event
+* Stable Api
+
 ## 0.2.1
 
 * Change design

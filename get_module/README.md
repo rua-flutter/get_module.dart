@@ -5,7 +5,7 @@
 And it makes many community packages easier to install and manage.
 
 
-[![pub package](https://img.shields.io/pub/v/get_module?style=flat)](https://github.com/rua-flutter/get_module.dart/tree/main/get_module) ![license](https://img.shields.io/github/license/rua-flutter/get_module.dart?style=flat)  [![stars](https://img.shields.io/github/stars/rua-flutter/get_module.dart?style=social)](https://github.com/rua-flutter/get_module.dart)
+[![pub package](https://img.shields.io/pub/v/get_module?style=flat)](https://pub.dev/packages/get_module) ![license](https://img.shields.io/github/license/rua-flutter/get_module.dart?style=flat)  [![stars](https://img.shields.io/github/stars/rua-flutter/get_module.dart?style=social)](https://github.com/rua-flutter/get_module.dart)
 
 ## Goal
 
