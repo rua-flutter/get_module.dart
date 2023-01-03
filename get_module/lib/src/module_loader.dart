@@ -61,7 +61,7 @@ abstract class ModuleLoader {
 
   Future<void> scanSatisfied() async {
     for (final module in [...modules]) {
-      if (module.dependencies.length < installedModules.length) {
+      if (module.dependencies.length > installedModules.length) {
         continue;
       }
 
