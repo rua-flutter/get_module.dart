@@ -1,12 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:get_event_bus/get_event_bus.dart';
 import 'package:get_module/get_module.dart';
-import 'package:get_module/src/module/callback_module.dart';
-import 'package:get_module/src/module/run_app_module.dart';
 
 import 'module/test_module.dart';
 
@@ -173,7 +170,7 @@ void main() {
       // when
       await GetModuleLoader(
         [
-          RunAppModule(const FittedBox()),
+          GetMaterialAppModule(),
         ],
         autoStart: false,
       ).run();

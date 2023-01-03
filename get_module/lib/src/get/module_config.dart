@@ -23,16 +23,16 @@ class ModuleConfig {
     return widget!;
   }
 
-  final routes = <GetPage>[];
+  final pages = <GetPage>[];
 
   /// get all pages
   List<GetPage> get getPages {
-    return routes;
+    return pages;
   }
 
   /// add pages to manager
-  void addPages(Iterable<GetPage> pages) {
-    routes.addAll(pages);
+  void addPages(Iterable<GetPage> list) {
+    pages.addAll(list);
   }
 }
 

@@ -1,3 +1,8 @@
+## 0.2.1
+
+* Change design
+* Remove RunAppModule
+
 ## 0.2.0
 
 * Support builder
