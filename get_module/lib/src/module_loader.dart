@@ -11,18 +11,22 @@ import 'package:get_module/src/module/module.dart';
 abstract class ModuleLoader {
   final List<Module> modules;
 
+  /// installed modules types
   @protected
   @visibleForTesting
   final List<Type> installedModules = [];
 
+  /// installing modules
   @protected
   @visibleForTesting
   final List<Module> pendingModules = [];
 
+  /// pending executions may contains finished executions
   @protected
   @visibleForTesting
   final pendingExecutions = <Future>[];
 
+  /// indicates the loader is running
   @protected
   @visibleForTesting
   bool running = false;

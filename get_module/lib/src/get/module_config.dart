@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class ModuleConfig {
   final List<TransitionBuilder> builders = [];
 
+  /// combine all builders into one builder
   Widget builder(BuildContext context, Widget? child) {
     Widget? widget = child;
 
@@ -16,6 +17,10 @@ class ModuleConfig {
   }
 }
 
+
+/// GetModuleConfigExtension
+///
+/// mount [GetModuleConfigExtension] to [GetInterface]
 extension GetModuleConfigExtension on GetInterface {
   static final _moduleConfig = ModuleConfig();
 
