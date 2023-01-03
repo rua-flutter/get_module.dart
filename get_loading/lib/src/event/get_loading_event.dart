@@ -1,6 +1,4 @@
 /// GetLoadingEvent
 ///
 /// parent event
-class GetLoadingEvent {
-
-}
+class GetLoadingEvent {}

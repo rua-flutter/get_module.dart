@@ -11,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   get: '>=4.0.0 <5.0.0'
-  get_module:
-    path: '../get_module'
+  get_module: '>=1.0.0 <2.0.0'
   get_event_bus: '>=1.0.0 <2.0.0'
   flutter_easyloading: '>=3.0.0 <4.0.0'
 dev_dependencies:

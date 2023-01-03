@@ -7,7 +7,6 @@ import 'package:get_event_bus/get_event_bus.dart';
 import 'package:get_loading/src/event/get_loading_status_changed_event.dart';
 
 class Loading {
-
   late final isShow = EasyLoading.isShow.obs;
 
   Loading() {
