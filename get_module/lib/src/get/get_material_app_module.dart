@@ -8,25 +8,27 @@ import 'package:get_module/src/get/module_config.dart';
 ///
 /// Module for [GetMaterialApp]
 class GetMaterialAppModule extends Module {
-  late final Widget app;
+  late final Widget Function() appBuilder;
 
   GetMaterialAppModule({
     // route
     Widget? home,
     String? initialRoute,
   }) {
-    final moduleConfig = Get.moduleConfig;
+    appBuilder = () {
+      final moduleConfig = Get.moduleConfig;
 
-    app = GetMaterialApp(
-      home: home,
-      initialRoute: initialRoute,
-      getPages: moduleConfig.getPages,
-      builder: moduleConfig.getBuilder,
-    );
+      return GetMaterialApp(
+        home: home,
+        initialRoute: initialRoute,
+        getPages: moduleConfig.getPages,
+        builder: moduleConfig.getBuilder,
+      );
+    };
   }
 
   @override
   void install() {
-    runApp(app);
+    runApp(appBuilder());
   }
 }
