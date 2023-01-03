@@ -27,8 +27,8 @@ Wrapper module provides simplier usage for other package.
 - Mounted getter access to `GetInterface`
 - Provided more methods
 - Renamed confusing method name
-- Simplify method parameter
-- Replace callback function with event
+- Simplified method parameter
+- Replaced callback function with event
 
 
 
