@@ -9,6 +9,6 @@ void main() {
     /// project modules
     FoundationModule(),
     /// runApp()
-    GetMaterialAppModule(),
+    GetMaterialAppModule()..dependencies = [GetLoadingModule],
   ]);
 }

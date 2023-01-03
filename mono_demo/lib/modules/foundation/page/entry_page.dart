@@ -7,7 +7,10 @@ class EntryController extends GetxController with GetSingleTickerProviderStateMi
 
   late final tabController = TabController(length: 3, vsync: this);
 
-
+  changeTab(int index) {
+    tabIndex.value = index;
+    tabController.index = index;
+  }
 }
 
 class EntryPage extends GetView<EntryController> {
@@ -16,10 +19,18 @@ class EntryPage extends GetView<EntryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: UIDemoPage(),
+      body: TabBarView(
+        controller: controller.tabController,
+        children: [
+          UIDemoPage(),
+          UIDemoPage(),
+          UIDemoPage(),
+        ],
+      ),
       bottomNavigationBar: Obx(() {
         return BottomNavigationBar(
           currentIndex: controller.tabIndex.value,
+          onTap: controller.changeTab,
           items: [
             BottomNavigationBarItem(icon: const Icon(Icons.screenshot_monitor), label: 'UI'.tr),
             BottomNavigationBarItem(icon: const Icon(Icons.code), label: 'Function'.tr),
