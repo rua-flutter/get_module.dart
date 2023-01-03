@@ -12,8 +12,8 @@ export 'package:get_module/src/module/callback_module.dart';
 /// event
 export 'package:get_module/src/event/module_loader_event.dart';
 export 'package:get_module/src/event/app_started_event.dart';
-export 'package:get_module/src/event/after_start_module_loader_event.dart';
-export 'package:get_module/src/event/before_start_module_loader_event.dart';
+export 'package:get_module/src/event/module_loader_finished_event.dart';
+export 'package:get_module/src/event/module_loader_started_event.dart';
 
 /// get
 export 'package:get_module/src/get/module_config.dart';

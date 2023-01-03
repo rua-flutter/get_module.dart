@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_event_bus/get_event_bus.dart';
-import 'package:get_module/src/event/after_start_module_loader_event.dart';
-import 'package:get_module/src/event/before_start_module_loader_event.dart';
+import 'package:get_module/src/event/module_loader_finished_event.dart';
+import 'package:get_module/src/event/module_loader_started_event.dart';
 import 'package:get_module/src/module/module.dart';
 
 /// ModuleLoader
@@ -37,7 +37,7 @@ abstract class ModuleLoader {
   }
 
   Future<void> run() async {
-    Get.bus.fire(BeforeStartModuleLoaderEvent(this));
+    Get.bus.fire(ModuleLoaderStartedEvent(this));
     if (running) {
       return;
     }
@@ -52,7 +52,7 @@ abstract class ModuleLoader {
     });
 
     pendingExecutions.clear();
-    Get.bus.fire(AfterStartModuleLoaderEvent(this));
+    Get.bus.fire(ModuleLoaderFinishedEvent(this));
   }
 
   Future<void> scanSatisfied() async {
