@@ -21,7 +21,7 @@ class GetMaterialAppModule extends Module {
       home: home,
       initialRoute: initialRoute,
       getPages: moduleConfig.getPages,
-      builder: moduleConfig.builder,
+      builder: moduleConfig.getBuilder,
     );
   }
 

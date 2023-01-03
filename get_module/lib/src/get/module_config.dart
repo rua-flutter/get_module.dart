@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class ModuleConfig {
   List<TransitionBuilder> builders = [];
 
-  TransitionBuilder? get builder {
+  TransitionBuilder? get getBuilder {
     if (builders.isNotEmpty) {
       return _builder;
     }
