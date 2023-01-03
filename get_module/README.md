@@ -30,16 +30,26 @@ void main() {
     HomeModule().silenceOnError, // you can silence errors and keep code going
     ChatModule().silenceOnError,
     GalleryModule().silenceOnError,
-    runAppModule(const App()).finalModule
+    GetMaterialAppModule(),
   ]);
 }
 
-class App extends StatelessWidget {
-  // your entry widget
-}
+class UserModule extends GetModule {
+  @override
+  List<GetPage> get pages => [
+    GetPage(
+      name: '/',
+      page: () => const EntryPage(),
+    ),
+  ];
 
-class UserModule extends Module {
-  Future<void> install async {
+  @override
+  Map<String, Map<String, String>> get translations => {
+    'en': {},
+    'zh_CN': {},
+  };
+
+  Future<void> install() async {
     // module installation
   }
 }

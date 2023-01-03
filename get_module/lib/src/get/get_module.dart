@@ -16,6 +16,5 @@ abstract class GetModule extends Module {
   }
 
   @override
-  FutureOr<void> install() {
-  }
+  FutureOr<void> install() {}
 }

@@ -19,4 +19,3 @@ export 'package:get_module/src/event/module_loader_started_event.dart';
 export 'package:get_module/src/get/module_config.dart';
 export 'package:get_module/src/get/get_module.dart';
 export 'package:get_module/src/get/get_material_app_module.dart';
-
