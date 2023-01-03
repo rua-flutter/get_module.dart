@@ -5,6 +5,7 @@ export 'package:get_module/src/get_module.dart';
 
 /// module
 export 'package:get_module/src/module/module.dart';
+export 'package:get_module/src/module/module_extension.dart';
 export 'package:get_module/src/module_loader.dart';
 export 'package:get_module/src/module/callback_module.dart';
 

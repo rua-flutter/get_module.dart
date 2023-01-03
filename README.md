@@ -34,8 +34,8 @@ Wrapper module provides simplier usage for other package.
 
 #### Modules
 
-| Folder      | GetInterface Getter | Original Package                                             |
-| ----------- | ------------------- | ------------------------------------------------------------ |
-| get_module  | Get.module.*        | Main Package                                                 |
-| get_loading | Get.loading.*       | [flutter_easyloading](https://github.com/nslogx/flutter_easyloading) |
+| Folder      | GetInterface Getter | Original Package                                             | Supported Platform |
+| ----------- | ------------------- | ------------------------------------------------------------ | ------------------ |
+| get_module  | Get.module.*        | Main Package                                                 | All                |
+| get_loading | Get.loading.*       | [flutter_easyloading](https://github.com/nslogx/flutter_easyloading) | All                |
 

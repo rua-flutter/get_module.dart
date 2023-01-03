@@ -28,26 +28,20 @@ enum ErrorHandle {
 abstract class Module {
   late ModuleLoader moduleLoader;
 
-  @protected
-  @visibleForTesting
   Scope scope = Scope.all;
 
-  @protected
-  @visibleForTesting
   ErrorHandle errorHandle = ErrorHandle.throws;
 
-  @protected
-  @visibleForTesting
   int failCount = 0;
 
   int retries = 3;
 
-  List<Type> dependencies = [];
+  Set<Type> dependencies = {};
 
   @visibleForTesting
   bool testingProductionMode = false;
 
-  @protected
+  @visibleForTesting
   bool get isDebug => !testingProductionMode && kDebugMode;
 
   FutureOr<void> install();
@@ -81,25 +75,5 @@ abstract class Module {
           break;
       }
     }
-  }
-
-  Module get debugOnly {
-    scope = Scope.debug;
-    return this;
-  }
-
-  Module get productionOnly {
-    scope = Scope.production;
-    return this;
-  }
-
-  Module get silenceOnError {
-    errorHandle = ErrorHandle.silence;
-    return this;
-  }
-
-  Module get retryOnError {
-    errorHandle = ErrorHandle.retry;
-    return this;
   }
 }
