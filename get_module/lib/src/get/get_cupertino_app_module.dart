@@ -71,13 +71,13 @@ class GetCupertinoAppModule extends Module {
     this.navigatorKey,
     this.home,
     Map<String, Widget Function(BuildContext)> this.routes =
-    const <String, WidgetBuilder>{},
+        const <String, WidgetBuilder>{},
     this.initialRoute,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
     this.onUnknownRoute,
     List<NavigatorObserver> this.navigatorObservers =
-    const <NavigatorObserver>[],
+        const <NavigatorObserver>[],
     this.builder,
     this.translationsKeys,
     this.translations,
@@ -125,6 +125,23 @@ class GetCupertinoAppModule extends Module {
 
   @override
   void install() {
+    final moduleConfig = Get.moduleConfig;
+    final hasBuilder = builder != null || moduleConfig.builders.isNotEmpty;
+
+    Widget mergedBuilder(BuildContext context, Widget? child) {
+      Widget? widget = child;
+
+      if (builder != null) {
+        widget = builder!(context, widget);
+      }
+
+      for (final func in moduleConfig.builders) {
+        widget = func(context, widget);
+      }
+
+      return widget!;
+    }
+
     runApp(GetCupertinoApp(
       key: key,
       theme: theme,
@@ -136,7 +153,7 @@ class GetCupertinoAppModule extends Module {
       onGenerateInitialRoutes: onGenerateInitialRoutes,
       onUnknownRoute: onUnknownRoute,
       navigatorObservers: navigatorObservers,
-      builder: builder,
+      builder: hasBuilder ? mergedBuilder : null,
       translationsKeys: translationsKeys,
       translations: translations,
       textDirection: textDirection,
@@ -165,7 +182,7 @@ class GetCupertinoAppModule extends Module {
       routingCallback: routingCallback,
       defaultTransition: defaultTransition,
       onReady: onReady,
-      getPages: getPages,
+      getPages: getPages ?? [],
       opaqueRoute: opaqueRoute,
       enableLog: enableLog,
       logWriterCallback: logWriterCallback,

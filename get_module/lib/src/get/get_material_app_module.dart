@@ -134,6 +134,24 @@ class GetMaterialAppModule extends Module {
 
   @override
   void install() {
+    final moduleConfig = Get.moduleConfig;
+
+    final hasBuilder = builder != null || moduleConfig.builders.isNotEmpty;
+
+    Widget mergedBuilder(BuildContext context, Widget? child) {
+      Widget? widget = child;
+
+      if (builder != null) {
+        widget = builder!(context, widget);
+      }
+
+      for (final func in moduleConfig.builders) {
+        widget = func(context, widget);
+      }
+
+      return widget!;
+    }
+
     runApp(GetMaterialApp(
       key: key,
       navigatorKey: navigatorKey,
@@ -146,7 +164,7 @@ class GetMaterialAppModule extends Module {
       onUnknownRoute: onUnknownRoute,
       useInheritedMediaQuery: useInheritedMediaQuery,
       navigatorObservers: navigatorObservers,
-      builder: builder,
+      builder: hasBuilder ? mergedBuilder : null,
       textDirection: textDirection,
       title: title,
       onGenerateTitle: onGenerateTitle,
@@ -176,7 +194,7 @@ class GetMaterialAppModule extends Module {
       onDispose: onDispose,
       routingCallback: routingCallback,
       defaultTransition: defaultTransition,
-      getPages: getPages,
+      getPages: getPages ?? [],
       opaqueRoute: opaqueRoute,
       enableLog: enableLog,
       logWriterCallback: logWriterCallback,
