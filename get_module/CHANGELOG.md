@@ -1,3 +1,8 @@
+## 1.0.0
+
+* Stable Release
+* Expose all parameter of App
+
 ## 0.3.0
 
 * Rename event
