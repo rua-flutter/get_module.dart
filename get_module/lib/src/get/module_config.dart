@@ -29,11 +29,6 @@ class ModuleConfig {
   List<GetPage> get getPages {
     return pages;
   }
-
-  /// add pages to manager
-  void addPages(Iterable<GetPage> list) {
-    pages.addAll(list);
-  }
 }
 
 extension GetModuleConfigExtension on GetInterface {
