@@ -8,13 +8,11 @@ import 'package:get_loading/src/event/get_loading_status_changed_event.dart';
 
 class Loading {
 
-  late final _isShow = EasyLoading.isShow.obs;
-
-  bool get isShow => _isShow.value;
+  late final isShow = EasyLoading.isShow.obs;
 
   Loading() {
     EasyLoading.addStatusCallback((status) {
-      _isShow.value = status == EasyLoadingStatus.show;
+      isShow.value = status == EasyLoadingStatus.show;
 
       Get.bus.fire(GetLoadingStatusChangedEvent(status));
     });
