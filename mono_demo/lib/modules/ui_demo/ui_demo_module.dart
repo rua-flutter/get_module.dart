@@ -9,7 +9,7 @@ class UIDemoModule extends GetModule {
     },
     'zh_CN': {
       'ui-demo.title': "UI DEMO",
-      "displaying": 'displaying',
+      "displaying": '展示中',
     }
   };
 }
