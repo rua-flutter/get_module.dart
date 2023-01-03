@@ -11,6 +11,8 @@ class GetMaterialAppModule extends Module {
 
   GetMaterialAppModule({
     // route
+    String? title,
+    ThemeData? theme,
     Widget? home,
     String? initialRoute,
     Locale? locale,
@@ -21,6 +23,8 @@ class GetMaterialAppModule extends Module {
       final moduleConfig = Get.moduleConfig;
 
       return GetMaterialApp(
+        title: title ?? '',
+        theme: theme,
         home: home,
         initialRoute: initialRoute,
         getPages: [],
