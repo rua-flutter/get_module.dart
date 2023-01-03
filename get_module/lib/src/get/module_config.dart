@@ -3,17 +3,9 @@ import 'package:get/get.dart';
 
 /// ModuleConfig
 class ModuleConfig {
-  List<TransitionBuilder> builders = [];
+  final List<TransitionBuilder> builders = [];
 
-  TransitionBuilder? get getBuilder {
-    if (builders.isNotEmpty) {
-      return _builder;
-    }
-
-    return null;
-  }
-
-  Widget _builder(BuildContext context, Widget? child) {
+  Widget builder(BuildContext context, Widget? child) {
     Widget? widget = child;
 
     for (final func in builders) {
@@ -21,13 +13,6 @@ class ModuleConfig {
     }
 
     return widget!;
-  }
-
-  final pages = <GetPage>[];
-
-  /// get all pages
-  List<GetPage> get getPages {
-    return pages;
   }
 }
 

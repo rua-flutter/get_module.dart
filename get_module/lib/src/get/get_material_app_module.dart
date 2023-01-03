@@ -14,6 +14,8 @@ class GetMaterialAppModule extends Module {
     // route
     Widget? home,
     String? initialRoute,
+    Locale? locale,
+    Locale? fallbackLocale,
   }) {
     appBuilder = () {
       final moduleConfig = Get.moduleConfig;
@@ -21,8 +23,11 @@ class GetMaterialAppModule extends Module {
       return GetMaterialApp(
         home: home,
         initialRoute: initialRoute,
-        getPages: moduleConfig.getPages,
-        builder: moduleConfig.getBuilder,
+        getPages: [],
+        builder: moduleConfig.builders.isNotEmpty ? moduleConfig.builder : null,
+        // translationsKeys: moduleConfig.translations,
+        locale: locale ?? Get.deviceLocale,
+        fallbackLocale: fallbackLocale ?? const Locale('en'),
       );
     };
   }
