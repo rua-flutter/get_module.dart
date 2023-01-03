@@ -11,6 +11,6 @@ void main() {
     FoundationModule(),
     UIDemoModule(),
     /// runApp()
-    GetMaterialAppModule().dependsOn([GetLoadingModule]),
+    GetMaterialAppModule(),
   ]);
 }

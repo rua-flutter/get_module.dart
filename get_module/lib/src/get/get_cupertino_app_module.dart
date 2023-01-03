@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,12 +8,11 @@ import 'package:get_module/get_module.dart';
 /// GetMaterialAppModule
 ///
 /// Module for [GetMaterialApp]
-class GetMaterialAppModule extends Module {
+class GetCupertinoAppModule extends Module {
   final Key? key;
 
   final GlobalKey<NavigatorState>? navigatorKey;
 
-  final GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey;
   final Widget? home;
   final Map<String, WidgetBuilder> routes;
   final String? initialRoute;
@@ -23,9 +23,6 @@ class GetMaterialAppModule extends Module {
   final TransitionBuilder? builder;
   final String title;
   final GenerateAppTitle? onGenerateTitle;
-  final ThemeData? theme;
-  final ThemeData? darkTheme;
-  final ThemeMode themeMode;
   final CustomTransition? customTransition;
   final Color? color;
   final Map<String, Map<String, String>>? translationsKeys;
@@ -43,12 +40,10 @@ class GetMaterialAppModule extends Module {
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
   final Map<LogicalKeySet, Intent>? shortcuts;
-  final ScrollBehavior? scrollBehavior;
   final ThemeData? highContrastTheme;
   final ThemeData? highContrastDarkTheme;
   final Map<Type, Action<Intent>>? actions;
-  final bool debugShowMaterialGrid;
-  final ValueChanged<Routing?>? routingCallback;
+  final Function(Routing?)? routingCallback;
   final Transition? defaultTransition;
   final bool? opaqueRoute;
   final VoidCallback? onInit;
@@ -67,52 +62,51 @@ class GetMaterialAppModule extends Module {
   final RouteInformationParser<Object>? routeInformationParser;
   final RouterDelegate<Object>? routerDelegate;
   final BackButtonDispatcher? backButtonDispatcher;
+  final CupertinoThemeData? theme;
   final bool useInheritedMediaQuery;
 
-  GetMaterialAppModule({
+  GetCupertinoAppModule({
     this.key,
+    this.theme,
     this.navigatorKey,
-    this.scaffoldMessengerKey,
     this.home,
     Map<String, Widget Function(BuildContext)> this.routes =
-        const <String, WidgetBuilder>{},
+    const <String, WidgetBuilder>{},
     this.initialRoute,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
     this.onUnknownRoute,
-    this.useInheritedMediaQuery = false,
     List<NavigatorObserver> this.navigatorObservers =
-        const <NavigatorObserver>[],
+    const <NavigatorObserver>[],
     this.builder,
+    this.translationsKeys,
+    this.translations,
     this.textDirection,
     this.title = '',
     this.onGenerateTitle,
     this.color,
-    this.theme,
-    this.darkTheme,
-    this.themeMode = ThemeMode.system,
+    this.customTransition,
+    this.onInit,
+    this.onDispose,
     this.locale,
     this.fallbackLocale,
     this.localizationsDelegates,
     this.localeListResolutionCallback,
     this.localeResolutionCallback,
     this.supportedLocales = const <Locale>[Locale('en', 'US')],
-    this.debugShowMaterialGrid = false,
     this.showPerformanceOverlay = false,
     this.checkerboardRasterCacheImages = false,
     this.checkerboardOffscreenLayers = false,
     this.showSemanticsDebugger = false,
     this.debugShowCheckedModeBanner = true,
     this.shortcuts,
-    this.scrollBehavior,
-    this.customTransition,
-    this.translationsKeys,
-    this.translations,
-    this.onInit,
-    this.onReady,
-    this.onDispose,
+    this.smartManagement = SmartManagement.full,
+    this.initialBinding,
+    this.useInheritedMediaQuery = false,
+    this.unknownRoute,
     this.routingCallback,
     this.defaultTransition,
+    this.onReady,
     this.getPages,
     this.opaqueRoute,
     this.enableLog = kDebugMode,
@@ -120,9 +114,6 @@ class GetMaterialAppModule extends Module {
     this.popGesture,
     this.transitionDuration,
     this.defaultGlobalState,
-    this.smartManagement = SmartManagement.full,
-    this.initialBinding,
-    this.unknownRoute,
     this.highContrastTheme,
     this.highContrastDarkTheme,
     this.actions,
@@ -134,48 +125,46 @@ class GetMaterialAppModule extends Module {
 
   @override
   void install() {
-    runApp(GetMaterialApp(
+    runApp(GetCupertinoApp(
       key: key,
+      theme: theme,
       navigatorKey: navigatorKey,
-      scaffoldMessengerKey: scaffoldMessengerKey,
       home: home,
       routes: routes,
       initialRoute: initialRoute,
       onGenerateRoute: onGenerateRoute,
       onGenerateInitialRoutes: onGenerateInitialRoutes,
       onUnknownRoute: onUnknownRoute,
-      useInheritedMediaQuery: useInheritedMediaQuery,
       navigatorObservers: navigatorObservers,
       builder: builder,
+      translationsKeys: translationsKeys,
+      translations: translations,
       textDirection: textDirection,
       title: title,
       onGenerateTitle: onGenerateTitle,
       color: color,
-      theme: theme,
-      darkTheme: darkTheme,
-      themeMode: themeMode,
+      customTransition: customTransition,
+      onInit: onInit,
+      onDispose: onDispose,
       locale: locale,
       fallbackLocale: fallbackLocale,
       localizationsDelegates: localizationsDelegates,
       localeListResolutionCallback: localeListResolutionCallback,
       localeResolutionCallback: localeResolutionCallback,
       supportedLocales: supportedLocales,
-      debugShowMaterialGrid: debugShowMaterialGrid,
       showPerformanceOverlay: showPerformanceOverlay,
       checkerboardRasterCacheImages: checkerboardRasterCacheImages,
       checkerboardOffscreenLayers: checkerboardOffscreenLayers,
       showSemanticsDebugger: showSemanticsDebugger,
       debugShowCheckedModeBanner: debugShowCheckedModeBanner,
       shortcuts: shortcuts,
-      scrollBehavior: scrollBehavior,
-      customTransition: customTransition,
-      translationsKeys: translationsKeys,
-      translations: translations,
-      onInit: onInit,
-      onReady: onReady,
-      onDispose: onDispose,
+      smartManagement: smartManagement,
+      initialBinding: initialBinding,
+      useInheritedMediaQuery: useInheritedMediaQuery,
+      unknownRoute: unknownRoute,
       routingCallback: routingCallback,
       defaultTransition: defaultTransition,
+      onReady: onReady,
       getPages: getPages,
       opaqueRoute: opaqueRoute,
       enableLog: enableLog,
@@ -183,9 +172,6 @@ class GetMaterialAppModule extends Module {
       popGesture: popGesture,
       transitionDuration: transitionDuration,
       defaultGlobalState: defaultGlobalState,
-      smartManagement: smartManagement,
-      initialBinding: initialBinding,
-      unknownRoute: unknownRoute,
       highContrastTheme: highContrastTheme,
       highContrastDarkTheme: highContrastDarkTheme,
       actions: actions,

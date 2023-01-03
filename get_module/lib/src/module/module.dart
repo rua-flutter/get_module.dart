@@ -36,12 +36,11 @@ abstract class Module {
 
   int retries = 3;
 
-  Set<Type> dependencies = {};
+  List<Type> dependencies = [];
 
   @visibleForTesting
   bool testingProductionMode = false;
 
-  @visibleForTesting
   bool get isDebug => !testingProductionMode && kDebugMode;
 
   FutureOr<void> install();

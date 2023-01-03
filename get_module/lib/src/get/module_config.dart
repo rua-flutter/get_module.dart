@@ -17,7 +17,6 @@ class ModuleConfig {
   }
 }
 
-
 /// GetModuleConfigExtension
 ///
 /// mount [GetModuleConfigExtension] to [GetInterface]
