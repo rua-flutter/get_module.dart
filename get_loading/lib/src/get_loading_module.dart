@@ -6,7 +6,7 @@ import 'package:get_module/get_module.dart';
 
 class GetLoadingModule extends Module {
   @override
-  FutureOr<void> install() {
+  void install() {
     Get.moduleConfig.builders.add(EasyLoading.init());
   }
 }

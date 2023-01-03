@@ -58,6 +58,8 @@ class Loading {
   /// mount function [EasyLoading.showProgress]
   var progress = EasyLoading.showProgress;
 
+  bool get isShow => EasyLoading.isShow;
+
   @mustCallSuper
   void dispose() {
     EasyLoading.removeAllCallbacks();

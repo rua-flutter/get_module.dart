@@ -9,7 +9,7 @@ void main() async {
   ]);
 
   // method 2
-  await GetLoadingModule().install();
+  GetLoadingModule().install();
 
   Get.loading.show(status: 'text');
   Get.loading.hide(animation: false);
