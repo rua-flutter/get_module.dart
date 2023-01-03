@@ -12,7 +12,14 @@ class GetLoadingPart extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Obx(() => Text('Get Loading (${'displaying'.tr}: ${Get.loading.isShow})')),
+          child: Obx(
+            () => Text(
+              'Get Loading (${'displaying'.tr}: ${Get.loading.isShow})',
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
         ),
         SizedBox(
           height: 35,
@@ -26,6 +33,18 @@ class GetLoadingPart extends StatelessWidget {
                   Get.loading.toast('hi');
                 },
                 child: const Text('toast'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await Get.loading(() async {
+                      await Future.delayed(const Duration(seconds: 3));
+                      throw Exception();
+                    });
+                  },
+                  child: const Text('loading'),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
