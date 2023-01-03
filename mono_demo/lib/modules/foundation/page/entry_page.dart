@@ -32,10 +32,20 @@ class EntryPage extends GetView<EntryController> {
           currentIndex: controller.tabIndex.value,
           onTap: controller.changeTab,
           items: [
-            BottomNavigationBarItem(icon: const Icon(Icons.screenshot_monitor), label: 'UI'.tr),
-            BottomNavigationBarItem(icon: const Icon(Icons.code), label: 'Function'.tr),
-            BottomNavigationBarItem(icon: const Icon(Icons.phonelink_rounded), label: 'Native'.tr),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.screenshot_monitor),
+              label: 'tab.widget'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.code),
+              label: 'tab.function'.tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.phonelink_rounded),
+              label: 'tab.native'.tr,
+            ),
           ],
+          selectedFontSize: 12,
         );
       }),
     );

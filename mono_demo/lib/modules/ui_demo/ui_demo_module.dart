@@ -1,9 +1,15 @@
-import 'dart:async';
-
 import 'package:get_module/get_module.dart';
 
-class UIDemoModule extends Module {
+class UIDemoModule extends GetModule {
   @override
-  FutureOr<void> install() {
-  }
+  Map<String, Map<String, String>> get translations => {
+    'en': {
+      'ui-demo.title': "UI DEMO",
+      "displaying": 'displaying',
+    },
+    'zh_CN': {
+      'ui-demo.title': "UI DEMO",
+      "displaying": 'displaying',
+    }
+  };
 }

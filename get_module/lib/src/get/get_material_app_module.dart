@@ -16,6 +16,7 @@ class GetMaterialAppModule extends Module {
     String? initialRoute,
     Locale? locale,
     Locale? fallbackLocale,
+    Iterable<Locale> supportedLocales = const <Locale>[Locale('en', 'US')],
   }) {
     appBuilder = () {
       final moduleConfig = Get.moduleConfig;
@@ -28,6 +29,7 @@ class GetMaterialAppModule extends Module {
         // translationsKeys: moduleConfig.translations,
         locale: locale ?? Get.deviceLocale,
         fallbackLocale: fallbackLocale ?? const Locale('en'),
+        supportedLocales: supportedLocales,
       );
     };
   }

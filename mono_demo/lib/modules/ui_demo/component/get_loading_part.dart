@@ -12,7 +12,7 @@ class GetLoadingPart extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Obx(() => Text('Get Loading (displaying: ${Get.loading.isShow})')),
+          child: Obx(() => Text('Get Loading (${'displaying'.tr}: ${Get.loading.isShow})')),
         ),
         SizedBox(
           height: 35,
