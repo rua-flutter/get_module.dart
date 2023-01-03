@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class ChangeLanguagePage extends StatelessWidget {
   const ChangeLanguagePage({Key? key}) : super(key: key);
