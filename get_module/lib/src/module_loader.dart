@@ -12,17 +12,12 @@ abstract class ModuleLoader {
   final List<Module> modules;
 
   /// installed modules types
-  @protected
-  @visibleForTesting
   final List<Type> installedModules = [];
 
   /// installing modules
-  @protected
-  @visibleForTesting
   final List<Module> pendingModules = [];
 
   /// pending executions may contains finished executions
-  @protected
   @visibleForTesting
   final pendingExecutions = <Future>[];
 
@@ -40,23 +35,20 @@ abstract class ModuleLoader {
     }
   }
 
-  Future<void> run() async {
-    Get.bus.fire(ModuleLoaderStartedEvent(this));
+  void run() {
     if (running) {
       return;
     }
 
     running = true;
 
+    Get.bus.fire(ModuleLoaderStartedEvent(this));
+
+    for (final module in modules) {
+      module.moduleLoader = this;
+    }
+
     scanSatisfied();
-
-    await Future.doWhile(() async {
-      await Future.wait(pendingExecutions);
-      return modules.isNotEmpty || pendingModules.isNotEmpty;
-    });
-
-    pendingExecutions.clear();
-    Get.bus.fire(ModuleLoaderFinishedEvent(this));
   }
 
   Future<void> scanSatisfied() async {
@@ -65,7 +57,7 @@ abstract class ModuleLoader {
         continue;
       }
 
-      if (module.dependencies.every((el) => installedModules.contains(el))) {
+      if (module.satisfy()) {
         modules.remove(module);
         pendingModules.add(module);
         pendingExecutions.add(runAsync(module));
@@ -74,10 +66,16 @@ abstract class ModuleLoader {
   }
 
   Future<void> runAsync(Module module) async {
-    module.moduleLoader = this;
     await module.run();
     pendingModules.remove(module);
     installedModules.add(module.runtimeType);
+
+    if (modules.isEmpty && pendingModules.isEmpty) {
+      pendingExecutions.clear();
+      Get.bus.fire(ModuleLoaderFinishedEvent(this));
+      return;
+    }
+
     scanSatisfied();
   }
 }

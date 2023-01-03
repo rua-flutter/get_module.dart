@@ -196,4 +196,10 @@ class GetCupertinoAppModule extends Module {
 
     Get.bus.fire(AppStartedEvent(moduleLoader));
   }
+
+  @override
+  bool satisfy() {
+    return moduleLoader.pendingModules.whereType<GetModule>().isEmpty &&
+        moduleLoader.modules.whereType<GetModule>().isEmpty;
+  }
 }

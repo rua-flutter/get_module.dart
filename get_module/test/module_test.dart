@@ -101,12 +101,13 @@ void main() {
 
       // when
       try {
-        await GetModuleLoader(
+        final loader = GetModuleLoader(
           [
             module,
           ],
           autoStart: false,
-        ).run();
+        )..run();
+        await Future.wait(loader.pendingExecutions);
         // should never called
         assert(false);
       } catch (e) {
@@ -123,12 +124,13 @@ void main() {
 
       // when
       try {
-        await GetModuleLoader(
+        final loader = GetModuleLoader(
           [
             module,
           ],
           autoStart: false,
-        ).run();
+        )..run();
+        await Future.wait(loader.pendingExecutions);
         // should never called
         assert(false);
       } catch (e) {
@@ -143,12 +145,13 @@ void main() {
 
       // when
       try {
-        await GetModuleLoader(
+        final loader = GetModuleLoader(
           [
             module.retryOnError,
           ],
           autoStart: false,
-        ).run();
+        )..run();
+        await Future.wait(loader.pendingExecutions);
         // should never called
         assert(false);
       } catch (e) {
@@ -168,12 +171,13 @@ void main() {
       });
 
       // when
-      await GetModuleLoader(
+      final loader = GetModuleLoader(
         [
           GetMaterialAppModule(),
         ],
         autoStart: false,
-      ).run();
+      )..run();
+      await Future.wait(loader.pendingExecutions);
 
       // then
       expect(eventFired, true);

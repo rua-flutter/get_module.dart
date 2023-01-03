@@ -75,4 +75,8 @@ abstract class Module {
       }
     }
   }
+
+  bool satisfy() {
+    return dependencies.every(moduleLoader.installedModules.contains);
+  }
 }

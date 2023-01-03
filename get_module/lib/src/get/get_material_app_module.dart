@@ -74,15 +74,13 @@ class GetMaterialAppModule extends Module {
     this.navigatorKey,
     this.scaffoldMessengerKey,
     this.home,
-    Map<String, Widget Function(BuildContext)> this.routes =
-        const <String, WidgetBuilder>{},
+    Map<String, Widget Function(BuildContext)> this.routes = const <String, WidgetBuilder>{},
     this.initialRoute,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
     this.onUnknownRoute,
     this.useInheritedMediaQuery = false,
-    List<NavigatorObserver> this.navigatorObservers =
-        const <NavigatorObserver>[],
+    List<NavigatorObserver> this.navigatorObservers = const <NavigatorObserver>[],
     this.builder,
     this.textDirection,
     this.title = '',
@@ -210,5 +208,11 @@ class GetMaterialAppModule extends Module {
     ));
 
     Get.bus.fire(AppStartedEvent(moduleLoader));
+  }
+
+  @override
+  bool satisfy() {
+    return moduleLoader.pendingModules.whereType<GetModule>().isEmpty &&
+        moduleLoader.modules.whereType<GetModule>().isEmpty;
   }
 }
