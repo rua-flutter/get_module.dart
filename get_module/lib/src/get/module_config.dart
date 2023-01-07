@@ -3,18 +3,11 @@ import 'package:get/get.dart';
 
 /// ModuleConfig
 class ModuleConfig {
+  /// global bindings
   final List<TransitionBuilder> builders = [];
 
-  /// combine all builders into one builder
-  Widget builder(BuildContext context, Widget? child) {
-    Widget? widget = child;
-
-    for (final func in builders) {
-      widget = func(context, widget);
-    }
-
-    return widget!;
-  }
+  /// global middlewares
+  final List<GetMiddleware> middlewares = [];
 }
 
 /// GetModuleConfigExtension

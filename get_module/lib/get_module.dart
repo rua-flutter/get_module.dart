@@ -12,6 +12,7 @@ export 'package:get_module/src/get/module_config.dart';
 export 'package:get_module/src/get/get_material_app_module.dart';
 export 'package:get_module/src/get/get_cupertino_app_module.dart';
 export 'package:get_module/src/get/get_module.dart';
+export 'package:get_module/src/get/get_create.dart';
 
 /// base
 export 'package:get_module/src/get_module.dart';
